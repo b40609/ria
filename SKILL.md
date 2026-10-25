@@ -87,9 +87,14 @@ a benchmark against the incumbent's behavior (adopt the "current system is the
 ground truth" acceptance rule — don't ship worse than what you had).
 
 ## Conductor wiring (use what's installed, degrade gracefully)
-| Segment | First choice | Fallback |
+| Segment | Own scripts (in scripts/) | External fallback |
 |---|---|---|
-| Survey | agent-reach / deep-research agent if available | plain multi-query web search |
-| Repo packing | `npx repopack` | `code2prompt` or direct reads |
+| Survey shortlist | `python scripts/discover.py "<query>"` (dual-track gh search) | manual multi-query web search |
+| Emerging quality screen | `python scripts/slop_check.py <cloned-repo>` (PASS/DEMOTE/DROP) | apply survey-protocol Step 3b by hand |
+| Clone + evidence pin | `python scripts/pin.py <url> ./research` (sha + license → manifest.json) | manual clone + record sha/license |
+| Repo packing | `npx repopack` | `code2prompt` or direct sub-agent reads |
 | Repo wiki | DeepWiki-Open if installed | read entrypoints manually |
-| Reading evidence | direct file reads | packed artifact search |
+
+Scripts are stdlib-only Python; they accelerate the protocol but never replace
+it — a `DEMOTE` from slop_check is triage advice, and the report still needs a
+human-visible reason recorded in shortlist.md.

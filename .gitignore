@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+tests/.tmp/
+research-smoke/
+research/clones/
+manifest.json
