@@ -58,13 +58,31 @@ Fork test: overlap <50% → borrowing modules beats forking their base.
 
 ## Verdict marks (every non-trivial statement carries one)
 
-- `confirmed-code` — you read it in the cloned source at a citable `file:line @ sha`
-- `confirmed-docs` — the project's own docs/README claim it; plausible but NOT code-verified
+- `confirmed-code` — you read it in the cloned source at a citable `file:line @ sha`.
+  When depth matters, append it: `/read` (traced on the tree) → `/exercised`
+  (ran or tested it) → `/adopted` (verified in real use).
+  **Cloned ≠ read ≠ exercised ≠ adopted** — grade the observation, not just the claim.
+- `confirmed-docs` — the project's own docs/README claim it; plausible but NOT
+  code-verified. May support gap/park/reject decisions — **never a borrow**.
+- `hosted` — a service/control-plane claim you cannot inspect. Unverifiable by
+  construction; never drives borrowing.
 - `needs_validation` — your inference from structure/patterns
 - `rejected` — claimed elsewhere but disproven in source (state the counter-evidence)
 
 Mixing these up is the cardinal sin of AI audits: unverified inference presented
 as confirmed finding.
+
+## Hard decision rules
+
+1. **No code evidence, no steal.** Without `confirmed-code`, any borrow decision
+   is capped at gap / park / reject.
+2. **Prove absence on your side.** Every "we lack X" row cites the search that
+   proved it (command + scope run against the USER's tree). And per the
+   mechanism-tracing discipline: an unused helper in their repo is evidence
+   about that helper, not about every way either product does the job.
+3. **Steal the pattern, not the platform.** Default is re-expressing in the
+   user's own primitives; vendoring requires an explicit, coupling-justified
+   override.
 
 ## Synthesis section (after all projects)
 

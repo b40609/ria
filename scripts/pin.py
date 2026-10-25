@@ -32,6 +32,15 @@ def sh(args: list[str], cwd: Path | None = None) -> subprocess.CompletedProcess:
                           capture_output=True, text=True)
 
 
+def _load_manifest(path: Path) -> list[dict]:
+    if path.exists():
+        try:
+            return list(json.loads(path.read_text(encoding="utf-8")))
+        except (json.JSONDecodeError, OSError):
+            return []
+    return []
+
+
 def detect_license(repo: Path) -> tuple[str, str]:
     for candidate in ["LICENSE", "LICENSE.md", "LICENSE.txt", "COPYING", "LICENCE"]:
         p = repo / candidate
@@ -48,12 +57,46 @@ def detect_license(repo: Path) -> tuple[str, str]:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("url", help="https://github.com/owner/repo")
+    ap.add_argument("url", help="https://github.com/owner/repo (or a local path, for offline/dev use)")
     ap.add_argument("research_dir", type=Path, help="e.g. ./research (created if missing)")
+    ap.add_argument("--refresh", action="store_true",
+                    help="re-pull every manifest clone and report SHA changes since last pin")
     args = ap.parse_args()
 
-    name = args.url.rstrip("/").rsplit("/", 1)[-1].removesuffix(".git")
-    owner = args.url.rstrip("/").rsplit("/", 2)[-2] if len(args.url.rstrip("/").split("/")) >= 2 else "unknown"
+    manifest_path = args.research_dir / "manifest.json"
+
+    if args.refresh:
+        entries = _load_manifest(manifest_path)
+        for entry in entries:
+            clone = Path(entry["clone"])
+            if not clone.exists():
+                print(f"[gone] {entry['repo']} — clone missing, re-pin it")
+                continue
+            res = sh(["git", "-C", str(clone), "pull", "--ff-only"])
+            if res.returncode != 0:  # diverged history: fetch only, report stale
+                sh(["git", "-C", str(clone), "fetch", "--depth=100"])
+                print(f"[warn] {entry['repo']}: pull not fast-forward, check manually")
+                continue
+            new_sha = sh(["git", "-C", str(clone), "rev-parse", "--short", "HEAD"]).stdout.strip()
+            if new_sha and new_sha != entry["pinned_sha"]:
+                print(f"[moved] {entry['repo']}: {entry['pinned_sha']} -> {new_sha} "
+                      f"(evidence older than this pin may be stale)")
+                entry["pinned_sha"] = new_sha
+                entry["pinned_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+            else:
+                print(f"[same]  {entry['repo']} @ {entry['pinned_sha']}")
+        manifest_path.write_text(json.dumps(entries, ensure_ascii=False, indent=2),
+                                 encoding="utf-8")
+        return
+
+    is_local = Path(args.url).exists()
+    src = args.url
+    if is_local:
+        name = Path(args.url).resolve().name
+        owner = "local"
+    else:
+        name = args.url.rstrip("/").rsplit("/", 1)[-1].removesuffix(".git")
+        owner = args.url.rstrip("/").rsplit("/", 2)[-2] if len(args.url.rstrip("/").split("/")) >= 2 else "unknown"
     dest = args.research_dir / "clones" / f"{owner}--{name}"
 
     if dest.exists():
@@ -80,13 +123,8 @@ def main() -> None:
     }
 
     manifest_path = args.research_dir / "manifest.json"
-    manifest = []
-    if manifest_path.exists():
-        try:
-            manifest = [m for m in json.loads(manifest_path.read_text(encoding="utf-8"))
-                        if m.get("repo") != entry["repo"]]
-        except (json.JSONDecodeError, OSError):
-            manifest = []
+    manifest = _load_manifest(manifest_path)
+    manifest = [m for m in manifest if m.get("repo") != entry["repo"]]
     manifest.append(entry)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2),
                              encoding="utf-8")
