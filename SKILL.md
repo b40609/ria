@@ -28,6 +28,11 @@ Write down: the user's product in one sentence, the problem it solves, and what
 counts as "same problem". Ask the user only if the framing would change which
 competitors qualify. A wrong frame poisons everything downstream.
 
+Pick the depth NOW, before any spend (proportionality gate):
+- **Quick scan** — one focused question, ≤2 targets, no full artifact tree
+- **Full teardown** — market questions, the whole 7-step ritual + research/ tree
+When in doubt, escalate toward Full. (from EveryInc/compound-engineering)
+
 ### 2. SURVEY (anti-narrow protocol — see references/survey-protocol.md)
 Generate diverse perspectives BEFORE searching (STORM-style: indie hacker
 building the same thing / VC mapping the market / non-English ecosystem user /

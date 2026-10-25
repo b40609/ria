@@ -21,6 +21,14 @@ One section per deep-read project, using this schema:
 
 **One-line positioning**: what it is, who it's for.
 
+### Deep-dive modules (when a mechanism matters)
+Analyze by business capability, not by file. Each deep-dive module covers four
+essentials — core data structures / execution flow (Mermaid optional, with
+`file:line`) / design decision & trade-off / inter-module dependencies — and
+answers: why does this module exist (what breaks without it)? **Completeness
+bar: another AI reading only your report should be able to redraw the
+architecture.** (discipline from yzddmr6/repo-analyzer)
+
 ### Better than us  (every claim: `path/file.py:LINE @ short-sha` — confirmed)
 | # | Claim | Evidence | Size/coupling | What would overturn it |
 |---|---|---|---|---|
