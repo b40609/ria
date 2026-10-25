@@ -55,11 +55,20 @@ missed four same-thesis indie projects, a no-license repo nearly got its code
 borrowed, and an AGPL incumbent nearly got forked. Every rule in this skill
 is a scar from that campaign.
 
-## Credits
+## Credits & neighbors
 
 Standing on: Stanford STORM (multi-perspective questioning), the deep-research
 agent lineage (Alibaba DeepResearch 20k★, dzhng/deep-research 19.8k★),
-DeepWiki-Open (18.1k★), repopack. This skill adds only the conductor layer.
+DeepWiki-Open (18.1k★), repopack. Evidence discipline (commit-pinned citations,
+falsification criteria) borrowed from
+[daymade/competitors-analysis](https://github.com/daymade/claude-code-skills) (MIT).
+
+**vs daymade/competitors-analysis** — that is a durable competitor-intelligence
+*platform* (workspace conventions, AGENTS.md product contracts, team
+collections, six modes). This skill is the opposite bet: **one folder, zero
+conventions, survey-first** — the anti-narrow protocol and the evidence→decision
+gate are the product. They coexist fine; some teams run daymade as the engine
+and this as the front door.
 
 ## License
 

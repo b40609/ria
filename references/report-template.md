@@ -7,10 +7,14 @@ One section per deep-read project. Copy this schema verbatim.
 
 **One-line positioning**: what it is, who it's for.
 
-### Better than us  (every claim: `path/file.py:LINE` — confirmed)
-| # | Claim | Evidence | Size/coupling |
-|---|---|---|---|
-| 1 | e.g. 11-tier scoring engine w/ time decay | src/learning/preference_engine.py:1-180 | 1,098 lines, coupled to their store via 1 interface |
+### Better than us  (every claim: `path/file.py:LINE @ short-sha` — confirmed)
+| # | Claim | Evidence | Size/coupling | What would overturn it |
+|---|---|---|---|---|
+| 1 | e.g. 11-tier scoring engine w/ time decay | src/learning/preference_engine.py:1-180 @a1b2c3d | 1,098 lines, coupled to their store via 1 interface | engine bypassed in current flow; weights hardcoded |
+
+Evidence is pinned to the commit analyzed (`git rev-parse --short HEAD` in the
+clone) — repos move; unpinned citations rot. (discipline borrowed from
+daymade/competitors-analysis, MIT)
 
 ### Borrow list
 | Item | Source | License-clean? | Port cost | Recommendation |
@@ -25,6 +29,12 @@ is near-zero and license is permissive.
 - …
 - …
 (moat check — if this list is empty, say so plainly)
+
+### Didn't-ask-but-should-know
+Things the user did not ask about but would change their decision if they knew
+(buried config costs, an undocumented hard dependency, an upstream feud, a
+dead predecessor with the same thesis). Fixed section, never optional — the
+highest-value lines of the report usually live here.
 
 ### Overlap: ~N%
 What fraction of this product's core the user's product already has.

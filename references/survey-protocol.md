@@ -48,6 +48,21 @@ months ago is a stronger signal than a 30k★ repo pushing less often.
 3. At least one "who died and why" check (Omnivore-style post-mortems) — a dead
    predecessor's cause of death is strategy input.
 
+## Step 3b — Emerging-project quality screen (15-minute triage)
+
+The vibes era produces shells: a brilliant README over 200 lines of hollow
+code. Before investing a deep-read in a low-star new project, pass it through:
+
+| Check | Pass signal | Fail signal |
+|---|---|---|
+| README ↔ code consistency | claimed feature locatable in source | headline feature has no code |
+| Tests | has tests, any quality | zero tests AND zero CI |
+| Commit texture | real history, iterations | single init commit / mass-generated |
+| Dependency sanity | plausible deps for the claim | imports that don't exist or do nothing |
+
+One fail = demote to `reference` (notes only). Two fails = drop with a note.
+This screen is what makes "mandatory inclusion of emerging projects" affordable.
+
 ## Step 4 — Stop rule
 
 Three consecutive full sweeps (new perspectives or new phrasings) returning zero
