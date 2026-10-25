@@ -1,6 +1,20 @@
 # Report Template & Verdict Rules
 
-One section per deep-read project. Copy this schema verbatim.
+Teardowns are durable artifacts, not chat messages. Produce this tree inside
+the research directory (structure battle-tested in a real campaign):
+
+```text
+research/
+├── landscape.md            # the market map + survey method used
+├── shortlist.md            # candidates in, candidates out, why
+├── teardown/<project>.md   # one file per deep-read project (schema below)
+├── evidence.md             # cross-project index of key claims → citations
+├── recommendations.md      # borrow priority matrix + disagreements
+├── decision-log.md         # what the user decided, with reasons
+└── implementation-brief.md # ONLY written after approval — the handoff spec
+```
+
+One section per deep-read project, using this schema:
 
 ```markdown
 ## <Project> — <stars>★ (created YYYY-MM, last push YYYY-MM-DD), <license>
@@ -23,7 +37,8 @@ daymade/competitors-analysis, MIT)
 
 `Port cost` must pick one: **vendor** (copy file(s), keep attribution) or
 **re-implement** (keep architecture, write natively). Vendor only when coupling
-is near-zero and license is permissive.
+is near-zero and license is permissive. Also flag **scale-fit**: designs that
+make sense at THEIR scale (team, traffic, funding) but not at the user's.
 
 ### Ours-not-theirs
 - …
@@ -43,8 +58,9 @@ Fork test: overlap <50% → borrowing modules beats forking their base.
 
 ## Verdict marks (every non-trivial statement carries one)
 
-- `confirmed` — you read it in the cloned source at a citable location
-- `needs_validation` — inferred from README/docs/structure, not yet code-verified
+- `confirmed-code` — you read it in the cloned source at a citable `file:line @ sha`
+- `confirmed-docs` — the project's own docs/README claim it; plausible but NOT code-verified
+- `needs_validation` — your inference from structure/patterns
 - `rejected` — claimed elsewhere but disproven in source (state the counter-evidence)
 
 Mixing these up is the cardinal sin of AI audits: unverified inference presented

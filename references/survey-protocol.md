@@ -28,9 +28,10 @@ perspectives. Proven perspectives:
 Run perspectives against multiple sources in the same round:
 
 - **Web search** (EN + user's language) — 2 engines if available
-- **GitHub**: multi-keyword, TWO sorts — by stars (maturity) AND by
-  recently-created (the emerging cluster). Also `gh search repos` with different
-  phrasings; search awesome-lists in the domain
+- **GitHub**: dual-track with concrete syntax —
+  - Baseline (maturity): `gh search repos "<keywords>" --sort stars --limit 10`
+  - Emerging (the vibe-coding cluster): `gh search repos "<keywords>" --sort updated --created=">YYYY-MM-DD" (≤90d) --stars=5..500 --json fullName,stargazersCount,createdAt,pushedAt,description` — recent creation + real push activity, star band excludes both toys and giants
+  - Also `gh search repos` with different phrasings; search awesome-lists in the domain
 - **Hacker News archive** (Algolia API) — Show HN posts reveal projects too
   young to rank, and post-mortems reveal dead ones
 - **Product directories** (AlternativeTo / mcp registries / skills marketplaces,

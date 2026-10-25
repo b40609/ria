@@ -10,12 +10,14 @@ searching — you orchestrate the giants and own the verdict. Business teardown
 skills read pricing pages and app-store reviews; **this skill reads source code.**
 
 Non-negotiable rules:
-1. Evidence means `file:line` from actual cloned source. README paraphrasing is not evidence.
+1. Evidence means `file:line @ short-sha` from actual cloned source. README paraphrasing is not evidence.
 2. Clones go to a research directory OUTSIDE the user's product repo. Never `git clean` anything inside the product.
 3. No LICENSE file found = ideas only, never code.
 4. The user's secrets/keys must never appear in any output.
 5. Every conclusion is marked `confirmed` (code-verified) or `needs_validation` (inferred). Never present inference as fact.
 6. The user's product is read-only until the DISCUSS step ends with explicit approval.
+7. Output abstract design + citations from competitors, never large copy-pasteable code blocks — even permissive licenses don't make wholesale dumping good practice, and it invites contamination.
+8. Default to public repos only. Read the license before the deep-read, not after.
 
 ## Workflow
 
@@ -47,12 +49,19 @@ Check LICENSE now, not later. Tag each: `MIT/BSD/Apache = borrowable`,
 `AGPL/LGPL = contamination risk — flag before any code moves`, `none = ideas only`.
 
 ### 4. READ
-Shallow-clone into the research dir. Scale the reading:
-- Large repo (>50k lines): pack with `npx repopack` or a DeepWiki-style index if available; read the packed artifact.
-- Small repo: read files directly.
-- For each "they do X better" claim: cite `file:line`, measure the surface
-  (lines, coupling points to their store/ORM/framework), and note what it would
-  take to transplant into the user's stack.
+Shallow-clone into the research dir. **Context discipline is mandatory**: never
+load multiple competitor repos into the main context — one repo per sub-agent
+(or one packed artifact per pass); the main agent only ever receives the
+structured verdicts. Reading N repos inline is the #1 way teardowns die of
+context bloat and the model starts forgetting your product mid-analysis.
+
+Scale the reading:
+- Large repo (>50k lines): pack with `npx repopack` or a DeepWiki-style index if available; the sub-agent reads the packed artifact.
+- Small repo: sub-agent reads files directly.
+- For each "they do X better" claim: cite `file:line @ short-sha`, measure the
+  surface (lines, coupling points to their store/ORM/framework), note whether
+  the design fits THEIR scale but not the user's, and what it would take to
+  transplant into the user's stack.
 
 ### 5. VERDICT (per project — see references/report-template.md)
 For every deep-read project produce:
