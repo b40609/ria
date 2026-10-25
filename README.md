@@ -55,6 +55,24 @@ missed four same-thesis indie projects, a no-license repo nearly got its code
 borrowed, and an AGPL incumbent nearly got forked. Every rule in this skill
 is a scar from that campaign.
 
+## Scripts (the executable half)
+
+```bash
+# 1. Dual-track discovery: mature incumbents + the emerging vibe-coding cluster
+python scripts/discover.py "self-hosted second brain"
+
+# 2. Clone a candidate + pin evidence (sha + license → research/manifest.json)
+python scripts/pin.py https://github.com/owner/repo ./research
+
+# 3. Quality-screen an emerging project (PASS / DEMOTE / DROP)
+python scripts/slop_check.py ./research/clones/owner--repo
+```
+
+Stdlib-only, zero dependencies. Smoke-tested against live repos — the smoke run
+itself caught and fixed three bugs in the heuristics (depth-1 clones falsifying
+commit counts, a file-count bar punishing deliberate-minimal architectures, a
+ratio formula typo). Tests: `python -m pytest tests/ -q`.
+
 ## Credits & neighbors
 
 Standing on: Stanford STORM (multi-perspective questioning), the deep-research
