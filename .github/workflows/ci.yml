@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  test-and-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # test fixtures create real git commits
+      - run: git config --global user.email ci@example.com && git config --global user.name ci-bot
+
+      - name: Unit tests
+        run: |
+          pip install pytest
+          python -m pytest tests/ -q
+
+      - name: Live smoke — pin.py + slop_check.py against a real repo
+        run: |
+          python scripts/pin.py https://github.com/philoking/cruxwire ./research-smoke-ci
+          test -f research-smoke-ci/manifest.json
+          python -m json.tool research-smoke-ci/manifest.json > /dev/null
+          python scripts/slop_check.py ./research-smoke-ci/clones/philoking--cruxwire --json | \
+            python -c "import json,sys; d=json.load(sys.stdin); assert d['verdict'] in ('PASS','DEMOTE','DROP'); print('smoke verdict:', d['verdict'])"
