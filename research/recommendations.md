@@ -1,4 +1,4 @@
-# Recommendations — self-teardown of competitor-code-teardown v1.3
+# Recommendations — self-teardown of read-before-build v1.3
 
 Synthesis: the market splits into *platform* (daymade, 1.5k★) and *single-target
 rigor* (boshu2). Our lane (lightweight conductor + anti-narrow discovery +

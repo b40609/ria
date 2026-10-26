@@ -1,4 +1,4 @@
-# ROADMAP — competitor-code-teardown
+# ROADMAP — read-before-build
 
 > 交接文件（2026-10-25，從 OmniKeep session 分家）。背景讀：README.md、
 > examples/self-teardown.md、research/decision-log.md、research/recommendations.md。
@@ -21,8 +21,8 @@
 4. v1.5 backlog：決策 JSON＋驗證器、frontmatter 契約、discover.py fork 過濾。
 
 ## 環境事實
-- repo：本目錄；GitHub：b40609/competitor-code-teardown（CI 綠，pytest+活體煙霧）
-- 安裝副本：~/.agents/skills/competitor-code-teardown（改完記得同步）
+- repo：本目錄；GitHub：b40609/read-before-build（CI 綠，pytest+活體煙霧）
+- 安裝副本：~/.agents/skills/read-before-build（改完記得同步）
 - 測試：`python -m pytest tests/ -q`（5 個，全離線）；push 後看 CI
 - 用戶已授權自主迴圈（範圍＝本 repo、紅線只增不減、CI 必綠、決策記 decision-log）
 - 競品克隆在 ./research/clones（manifest.json 記 SHA/授權）

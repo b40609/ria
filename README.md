@@ -1,4 +1,4 @@
-# competitor-code-teardown
+# read-before-build
 
 **An agent skill that conducts engineering teardowns of competing open-source
 projects — then helps you decide what to borrow before anyone writes code.**
@@ -40,9 +40,9 @@ gate**.
 Drop this folder into your agent's skills directory:
 
 ```bash
-git clone https://github.com/b40609/competitor-code-teardown ~/.agents/skills/competitor-code-teardown
+git clone https://github.com/b40609/read-before-build ~/.agents/skills/read-before-build
 # or for Claude Code-style layouts:
-git clone https://github.com/b40609/competitor-code-teardown ~/.claude/skills/competitor-code-teardown
+git clone https://github.com/b40609/read-before-build ~/.claude/skills/read-before-build
 ```
 
 Then just say: *"競品工程拆解：我在做 X，針對 Y 出一份帶證據的可搬清單"* —
