@@ -1,7 +1,12 @@
-# read-before-build
+# RIA — Research & Improve Anything
 
-**An agent skill that conducts engineering teardowns of competing open-source
-projects — then helps you decide what to borrow before anyone writes code.**
+**Research existing solutions. Find your next product improvement.**
+
+研究既有解法，找出讓產品更好的下一步。
+
+RIA's direction spans starting a product, improving an existing one, and adding
+a feature. Its current implementation focuses on evidence-backed engineering
+teardowns of open-source projects, followed by discussion before code changes.
 
 Business teardown skills read pricing pages, app-store reviews and SWOT.
 This one clones repos and reads source.
@@ -40,9 +45,9 @@ gate**.
 Drop this folder into your agent's skills directory:
 
 ```bash
-git clone https://github.com/b40609/read-before-build ~/.agents/skills/read-before-build
+git clone https://github.com/b40609/ria ~/.agents/skills/ria
 # or for Claude Code-style layouts:
-git clone https://github.com/b40609/read-before-build ~/.claude/skills/read-before-build
+git clone https://github.com/b40609/ria ~/.claude/skills/ria
 ```
 
 Then just say: *"競品工程拆解：我在做 X，針對 Y 出一份帶證據的可搬清單"* —

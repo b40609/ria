@@ -1,9 +1,11 @@
-# ROADMAP — read-before-build
+# ROADMAP — RIA (Research & Improve Anything)
 
 > 交接文件（2026-10-25，從 OmniKeep session 分家）。背景讀：README.md、
 > examples/self-teardown.md、research/decision-log.md、research/recommendations.md。
 
 ## 目標（用戶明確裁示）
+品牌定案：RIA — Research & Improve Anything。定位為研究既有解法，找出讓產品更好的下一步。
+適用方向涵蓋從零開發、改善既有產品、新增功能；三種情境的完整流程仍待後續開發與驗證。
 **執行產出品質**要追平或超越 daymade/boshu2/SGRX——不是自迭代花俏功能。
 已達成：v1.4.1（五模型審查吸收＋證據認識論升級＋比例閘門＋復現測試）。
 
@@ -21,8 +23,8 @@
 4. v1.5 backlog：決策 JSON＋驗證器、frontmatter 契約、discover.py fork 過濾。
 
 ## 環境事實
-- repo：本目錄；GitHub：b40609/read-before-build（CI 綠，pytest+活體煙霧）
-- 安裝副本：~/.agents/skills/read-before-build（改完記得同步）
+- repo：本目錄；GitHub：b40609/ria（pytest+活體煙霧 CI）
+- 安裝副本：~/.agents/skills/ria（改完記得同步）
 - 測試：`python -m pytest tests/ -q`（5 個，全離線）；push 後看 CI
 - 用戶已授權自主迴圈（範圍＝本 repo、紅線只增不減、CI 必綠、決策記 decision-log）
 - 競品克隆在 ./research/clones（manifest.json 記 SHA/授權）

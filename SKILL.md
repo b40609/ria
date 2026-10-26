@@ -1,9 +1,13 @@
 ---
-name: read-before-build
+name: ria
 description: Engineering teardown of competing open-source projects — multi-perspective landscape survey (anti-narrow), clone and deep-read source code, deliver an evidence-backed borrow list (file:line, license, port cost) plus a "what we have that they don't" moat check, and STOP for discussion before touching the user's codebase. Use when the user wants 競品分析/競品拆解 of source code (NOT pricing-page business teardown), wants to study similar projects before building a feature, asks "who else built this and did it better?", or wants patterns/modules borrowed from other repos into their own product.
 ---
 
-# Competitor Code Teardown (Conductor)
+# RIA — Research & Improve Anything
+
+Research existing solutions to identify the next product improvement. The
+current workflow focuses on source-code engineering teardown and an explicit
+discussion gate before changing the user's product.
 
 You are the conductor of an engineering teardown. You do NOT reinvent reading or
 searching — you orchestrate the giants and own the verdict. Business teardown

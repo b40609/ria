@@ -1,5 +1,11 @@
 # Decision Log
 
+## 2026-10-26 — RIA naming decision
+- User selected RIA — Research & Improve Anything and requested the name change everywhere, including GitHub.
+- Renamed the repository and installed skill to `ria`; updated branding and installation URLs.
+- Product direction covers starting a product, improving an existing product, and adding features. Full support for all three scenarios remains future work.
+- Kept the evidence requirements and discussion gate unchanged.
+
 ## 2026-10-25 — Standing authorization for the self-improvement loop
 User granted: survey same-problem works → clone/deep-read → self-assess →
 execute, WITHOUT stopping at the gate each time. Constraints agreed:
